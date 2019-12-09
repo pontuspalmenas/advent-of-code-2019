@@ -26,6 +26,7 @@ for i, l in enumerate(layers):
     if n < fewest_zeros:
         layers_with_fewest = l
         fewest_zeros = n
-        print(f'new smallest layer: {l} with {fewest_zeros}')
 
-print(count('1', l) * count('2', l))
+one = count('1', layers_with_fewest)
+two = count('2', layers_with_fewest)
+print(f'{one * two}')

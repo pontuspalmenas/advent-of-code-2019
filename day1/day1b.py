@@ -1,24 +1,21 @@
 # https://adventofcode.com/2019/day/1
 
-def fuel(mass):
-	return 
+def fuel(mass):	 
+	fuel_req = 0
+	new_fuel = (mass // 3) - 2
+	fuel_req += new_fuel
+	while True:
+		new_fuel = (new_fuel // 3) - 2
+		if (new_fuel < 0):
+			break
+		fuel_req += new_fuel
 
-	# 100756
-	# 33583 + 11192 + 3728 + 1240 + 411 + 135 + 43 + 12 + 2
-	100756 // 3 - 2
-    # fuel = fuel(mass + fuel)	
+	return fuel_req
 
 total = 0
-with open('input') as f:
-    #for line in f:	
-    #    total += fuel(int(line))
-	#total += fuel(100756, 0) # should be 50346
-	total_fuel = 0
-	mass = 100756
-	fuel = mass // 3 - 2
-	while (mass > 0):
-		total_fuel += mass // 3 - 2
-		mass = fuel
 
+with open('input') as f:
+    for line in f:	
+        total += fuel(int(line))
         
 print(total)
