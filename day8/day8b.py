@@ -16,11 +16,14 @@ for c in line:
         temp = ""
         n = 0
         
-top_layer = [None]*w*h
-prev_layer = None
-for l in enumerate(layers):
+top_layer = ['x' for i in range(w*h)]
+prev_layer = []
+
+print(f'layers: {len(layers)}')
+
+for l in layers:
     for n in range(0, len(l)):
-        if l[n] == '2' and prev_layer != None:
+        if l[n] == '2' and len(prev_layer) > 0:
             top_layer[n] = prev_layer[n]
         else:
             top_layer[n] = l[n]
