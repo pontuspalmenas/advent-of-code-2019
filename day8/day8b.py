@@ -15,18 +15,29 @@ for c in line:
         layers.append(temp)
         temp = ""
         n = 0
-        
+
 top_layer = ['x' for i in range(w*h)]
-prev_layer = []
 
-print(f'layers: {len(layers)}')
+# get the highest previous layers value that is non-transparent
+def get_highest(pos_in_layer):
+    for i in range(0, len(layers)):
+        if layers[i][pos_in_layer] != '2':
+            return layers[i][pos_in_layer]
 
-for l in layers:
-    for n in range(0, len(l)):
-        if l[n] == '2' and len(prev_layer) > 0:
-            top_layer[n] = prev_layer[n]
-        else:
-            top_layer[n] = l[n]
-    prev_layer = l
+l = layers[0]
+for n in range(0, w*h):
+    if l[n] == '2':
+        top_layer[n] = get_highest(n)
+    else:
+        top_layer[n] = l[n]
 
-print(top_layer)
+line = ""
+for n in range(0,w*h):
+    if n > 0 and n % w == 0:
+        print(line)
+        line = ""
+    if top_layer[n] == '1':
+        line += "█"
+    else:
+        line += " "
+print(line)
